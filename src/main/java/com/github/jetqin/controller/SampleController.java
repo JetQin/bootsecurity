@@ -22,23 +22,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.github.jetqin.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author jet
  *
  */
-@Controller
+@RestController
 public class SampleController
 {
 
-  @RequestMapping("/")
+  @RequestMapping("/hello")
   @ResponseBody
   public String home ( )
   {
     return "Hello World!";
   }
+
 
 }

@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages={"com.github.jetqin"})
 @SpringBootApplication
 public class StartupApplication
 {
