@@ -17,7 +17,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// date   : 2016年3月10日
+// date   : 2016年3月14日
 // 
 ////////////////////////////////////////////////////////////////////////////////
 package com.github.jetqin.domain;
@@ -28,7 +28,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -38,44 +37,18 @@ import lombok.Data;
  *
  */
 @Entity
-@Table(name = "ACCOUNT")
-public @Data class Account implements Serializable
+@Table(name = "PERMISSION")
+public @Data class Permission implements Serializable
 {
-
   @Id
-  @Column(name = "ACCOUNT_ID")
-  private String    accountId;
+  @Column(name = "PERMISSION_ID")
+  private String    permissionId;
 
-  @Column(name = "ACCOUNT_NAME")
-  private String    accountName;
+  @Column(name = "PERMISSION_NAME")
+  private String    permissionName;
 
   @Column(name = "DESCRIPTION")
   private String    description;
 
-  @ManyToMany(mappedBy = "accounts")
   private Set<Role> roles;
-
-  public Account ( )
-  {
-  }
-
-  public Account (String id, String name )
-  {
-    this.accountId = id;
-    this.accountName = name;
-  }
-
-  public Account (String id, String name, String description )
-  {
-    this.accountId = id;
-    this.accountName = name;
-    this.description = description;
-  }
-
-  @Override
-  public String toString ( )
-  {
-    return String.format("Account[id=%d, name='%s', description='%s']", accountId, accountName, description);
-  }
-
 }

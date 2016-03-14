@@ -22,22 +22,61 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.github.jetqin.startup;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import com.github.jetqin.domain.Account;
+import com.github.jetqin.repository.AccountRepository;
 
 /**
  * @author jet
  *
  */
 @Configuration
-@ComponentScan(basePackages={"com.github.jetqin"})
+@ComponentScan
 @SpringBootApplication
 public class StartupApplication
 {
+  
+  private Logger log = LoggerFactory.getLogger(StartupApplication.class);
+
+  
   public static void main ( String[] args )
   {
     SpringApplication.run(StartupApplication.class, args);
+  }
+  
+  @Bean
+  public CommandLineRunner demo(AccountRepository repository) {
+      return (args) -> {
+          // save a couple of customers
+          repository.save(new Account("Jack", "Bauer"));
+          repository.save(new Account("Chloe", "O'Brian"));
+          repository.save(new Account("Kim", "Bauer"));
+          repository.save(new Account("David", "Palmer"));
+          repository.save(new Account("Michelle", "Dessler"));
+
+          // fetch all customers
+          log.info("Customers found with findAll():");
+          log.info("-------------------------------");
+          for (Account customer : repository.findAll()) {
+              log.info(customer.toString());
+          }
+          log.info("");
+
+          // fetch an individual customer by ID
+          Account account = repository.findOne("Chloe");
+          log.info("Customer found with findOne(Chloe):");
+          log.info("--------------------------------");
+          log.info(account.toString());
+          log.info("");
+
+      };
   }
 }
