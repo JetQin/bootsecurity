@@ -26,55 +26,50 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.github.jetqin.domain.Account;
-import com.github.jetqin.repository.AccountRepository;
+import com.github.jetqin.domain.Customer;
+import com.github.jetqin.repository.CustomerRepository;
 
 /**
  * @author jet
  *
  */
-@Configuration
-@ComponentScan
-@SpringBootApplication
+
+@EnableJpaRepositories
+@EnableAutoConfiguration
+//@ComponentScan(basePackages={"com.github.jetqin"})
+//@EnableOrmConfiguration(showSql=false,packageToScan="com.github.jetqin.domain",enableCache=true)
 public class StartupApplication
 {
   
   private Logger log = LoggerFactory.getLogger(StartupApplication.class);
 
   
+  
   public static void main ( String[] args )
   {
-    SpringApplication.run(StartupApplication.class, args);
+    SpringApplication.run(StartupApplication.class);
   }
   
   @Bean
-  public CommandLineRunner demo(AccountRepository repository) {
+  public CommandLineRunner demo( CustomerRepository repository) {
       return (args) -> {
           // save a couple of customers
-          repository.save(new Account("Jack", "Bauer"));
-          repository.save(new Account("Chloe", "O'Brian"));
-          repository.save(new Account("Kim", "Bauer"));
-          repository.save(new Account("David", "Palmer"));
-          repository.save(new Account("Michelle", "Dessler"));
+          repository.save(new Customer("Jack", "Bauer"));
+          repository.save(new Customer("Chloe", "O'Brian"));
+          repository.save(new Customer("Kim", "Bauer"));
+          repository.save(new Customer("David", "Palmer"));
+          repository.save(new Customer("Michelle", "Dessler"));
 
           // fetch all customers
           log.info("Customers found with findAll():");
           log.info("-------------------------------");
-          for (Account customer : repository.findAll()) {
+          for (Customer customer : repository.findAll()) {
               log.info(customer.toString());
           }
-          log.info("");
-
-          // fetch an individual customer by ID
-          Account account = repository.findOne("Chloe");
-          log.info("Customer found with findOne(Chloe):");
-          log.info("--------------------------------");
-          log.info(account.toString());
           log.info("");
 
       };
