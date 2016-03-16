@@ -1,0 +1,1 @@
+create table customer(ID int primary key auto_increment not null,FIRST_NAME VARCHAR(255),LAST_NAME VARCHAR(255));

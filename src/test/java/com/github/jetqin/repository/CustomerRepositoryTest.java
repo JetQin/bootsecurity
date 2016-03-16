@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.jetqin.AbstractTest;
 import com.github.jetqin.domain.Customer;
-import com.github.jetqin.service.CustomerService;
 
 /**
  * ClassName: CustomerRepositoryTest
@@ -26,25 +25,22 @@ public class CustomerRepositoryTest extends AbstractTest
 {
 
   @Autowired
-  CustomerService customerService;
+  CustomerRepository customerRepository;
 
   @Test
-  public void saveCustomer ( )
+  public void save ( )
   {
-    customerService.saveCustomer(new Customer("Jack", "Bauer"));
-    customerService.saveCustomer(new Customer("Chloe", "O'Brian"));
-    customerService.saveCustomer(new Customer("Kim", "Bauer"));
-    customerService.saveCustomer(new Customer("David", "Palmer"));
-    customerService.saveCustomer(new Customer("Michelle", "Dessler"));
-  }
-
-  @Test
-  public void findAll ( )
-  {
-    for (Customer customer : customerService.findAll())
+    customerRepository.save(new Customer("Jack", "Bauer"));
+    customerRepository.save(new Customer("Chloe", "O'Brian"));
+    customerRepository.save(new Customer("Kim", "Bauer"));
+    customerRepository.save(new Customer("David", "Palmer"));
+    customerRepository.save(new Customer("Michelle", "Dessler"));
+    
+    for (Customer customer : customerRepository.findAll())
     {
       System.out.println(customer.toString());
     }
   }
+
 
 }
