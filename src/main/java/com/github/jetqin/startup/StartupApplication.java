@@ -24,20 +24,15 @@ package com.github.jetqin.startup;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-import com.github.jetqin.domain.Customer;
-import com.github.jetqin.repository.CustomerRepository;
 
 /**
  * @author jet
  *
  */
+
 @SpringBootApplication
 @EnableJpaRepositories
 //@ComponentScan(basePackages={"com.github.jetqin"})

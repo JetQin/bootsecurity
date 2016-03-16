@@ -31,8 +31,9 @@
 	 	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency> -->
-		<dependency>
+		</dependency> 
+		 -->
+		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -50,11 +51,6 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.jetqin</groupId>
-			<artifactId>orm</artifactId>
-			<version>1.1.5</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -66,35 +62,35 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<dependencies>
+				<!-- <dependencies>
 					<dependency>
 						<groupId>org.springframework</groupId>
 						<artifactId>springloaded</artifactId>
 						<version>${spring-loaded.version}</version>
 					</dependency>
-				</dependencies>
+				</dependencies> -->
 			</plugin>
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-releases</id>
-			<name>Spring Releases</name>
-			<url>https://repo.spring.io/libs-release</url>
-		</repository>
-		<repository>
-			<id>org.jboss.repository.releases</id>
-			<name>JBoss Maven Release Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-		</repository>
-	</repositories>
+	  <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+        <repository>
+            <id>org.jboss.repository.releases</id>
+            <name>JBoss Maven Release Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+        </repository>
+    </repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-releases</id>
-			<name>Spring Releases</name>
-			<url>https://repo.spring.io/libs-release</url>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
