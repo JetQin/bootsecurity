@@ -31,10 +31,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * @author jet
@@ -46,7 +47,7 @@ public class DatabaseConfig
 {
 
   private static final String PROPERTY_NAME_DATABASE_DRIVER                = "spring.datasource.driverClassName";
-  private static final String PROPERTY_NAME_DATABASE_PASSWORD              = "spring.datasource.username";
+  private static final String PROPERTY_NAME_DATABASE_PASSWORD              = "spring.datasource.password";
   private static final String PROPERTY_NAME_DATABASE_URL                   = "spring.datasource.url";
   private static final String PROPERTY_NAME_DATABASE_USERNAME              = "spring.datasource.username";
   private static final String PROPERTY_NAME_HIBERNATE_DIALECT              = "hibernate.dialect";
@@ -57,23 +58,37 @@ public class DatabaseConfig
   @Resource
   private Environment         env;
 
-//  @Bean
-//  public DataSource dataSource ( )
-//  {
+  @Bean
+  public DataSource dataSource ( )
+  {
 //    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 //    dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
 //    dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
 //    dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
 //    dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
-//    return dataSource;
-//  }
+    
+//    Properties props = new Properties();
+//    props.setProperty("dataSourceClassName", env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+//    props.setProperty("dataSource.user", env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
+//    props.setProperty("dataSource.password", env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+//    props.setProperty("dataSource.jdbcUrl", env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
 
-  @Bean
-  public DataSource dataSource() {
-
-    EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-    return builder.setType(EmbeddedDatabaseType.H2).build();
+    HikariConfig config = new HikariConfig();
+    config.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+    config.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
+    config.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+    config.setJdbcUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
+    
+    HikariDataSource dataSource = new HikariDataSource(config);
+    return dataSource;
   }
+
+//  @Bean
+//  public DataSource dataSource() {
+//
+//    EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+//    return builder.setType(EmbeddedDatabaseType.H2).build();
+//  }
 
   
   @Bean
