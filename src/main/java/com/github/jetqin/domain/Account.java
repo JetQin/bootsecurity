@@ -80,7 +80,7 @@ public @Data class Account implements Serializable
   @Override
   public String toString ( )
   {
-    return String.format("Account[id=%d, name='%s', description='%s']", accountId, accountName, description);
+    return String.format("Account[id=%s, name='%s', description='%s']", accountId, accountName, description);
   }
 
 }

@@ -55,4 +55,29 @@ public class Role implements Serializable
   @JoinTable(name = "ROLE_PERMISSION", joinColumns = { @JoinColumn(name = "permissionId") }, inverseJoinColumns = {
       @JoinColumn(name = "roleId") })
   private Set<Permission> permissions;
+  
+  public Role(){}
+  
+  public Role(String roleId,String roleName)
+  {
+    this.roleId = roleId;
+    this.roleName = roleName;
+  }
+  
+  public Role(String roleId,String roleName,String description)
+  {
+    this.roleId = roleId;
+    this.roleName = roleName;
+    this.description = description;
+  }
+  
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString ( )
+  {
+    // TODO Auto-generated method stub
+    return String.format("Role[id=%s,name=%s,description=%s]", roleId,roleName,description);
+  }
 }
