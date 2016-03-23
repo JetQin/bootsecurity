@@ -6,13 +6,14 @@
  * Copyright (c) 2016, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
-package com.github.jetqin.repository;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+package com.github.jetqin.repository;
 
 import com.github.jetqin.AbstractTest;
 import com.github.jetqin.domain.Customer;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * ClassName: CustomerRepositoryTest
@@ -28,19 +29,18 @@ public class CustomerRepositoryTest extends AbstractTest
   CustomerRepository customerRepository;
 
   @Test
-  public void save ( )
+  public void save ()
   {
-    customerRepository.save(new Customer("Jack", "Bauer"));
-    customerRepository.save(new Customer("Chloe", "O'Brian"));
-    customerRepository.save(new Customer("Kim", "Bauer"));
-    customerRepository.save(new Customer("David", "Palmer"));
-    customerRepository.save(new Customer("Michelle", "Dessler"));
-    
-    for (Customer customer : customerRepository.findAll())
+    customerRepository.save (new Customer ("Jack", "Bauer"));
+    customerRepository.save (new Customer ("Chloe", "O'Brian"));
+    customerRepository.save (new Customer ("Kim", "Bauer"));
+    customerRepository.save (new Customer ("David", "Palmer"));
+    customerRepository.save (new Customer ("Michelle", "Dessler"));
+
+    for (Customer customer : customerRepository.findAll ())
     {
-      System.out.println(customer.toString());
+      System.out.println (customer.toString ());
     }
   }
-
 
 }

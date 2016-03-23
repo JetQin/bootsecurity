@@ -20,26 +20,32 @@
 // date   : 2016年3月10日
 // 
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.github.jetqin.domain;
+
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import lombok.Data;
 
 /**
  * @author jet
  *
  */
+@Data
 @Entity
-@Table(name = "ACCOUNT")
-public @Data class Account implements Serializable
+@Table (name = "ACCOUNT")
+public class Account implements Serializable
 {
 
   /**
@@ -48,29 +54,35 @@ public @Data class Account implements Serializable
   private static final long serialVersionUID = 3366461526182564088L;
 
   @Id
-  @Column(name = "ACCOUNT_ID")
-  private String    accountId;
+  @Column (name = "ACCOUNT_ID")
+  private String accountId;
 
-  @Column(name = "ACCOUNT_NAME")
-  private String    accountName;
+  @Column (name = "ACCOUNT_NAME")
+  private String accountName;
 
-  @Column(name = "DESCRIPTION")
-  private String    description;
+  @Column (name = "ACCOUNT_PASSWORD")
+  private String accountPassword;
 
-  @ManyToMany(mappedBy = "accounts")
+  @Column (name = "DESCRIPTION")
+  private String description;
+
+  @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinTable (
+      name = "ACCOUNT_ROLE", joinColumns = { @JoinColumn (name = "ACCOUNT_ID") }, inverseJoinColumns = { @JoinColumn (
+          name = "ROLE_ID") })
   private Set<Role> roles;
 
-  public Account ( )
+  public Account ()
   {
   }
 
-  public Account (String id, String name )
+  public Account (String id, String name)
   {
     this.accountId = id;
     this.accountName = name;
   }
 
-  public Account (String id, String name, String description )
+  public Account (String id, String name, String description)
   {
     this.accountId = id;
     this.accountName = name;
@@ -78,9 +90,9 @@ public @Data class Account implements Serializable
   }
 
   @Override
-  public String toString ( )
+  public String toString ()
   {
-    return String.format("Account[id=%s, name='%s', description='%s']", accountId, accountName, description);
+    return String.format ("Account[id=%s, name='%s', description='%s']", accountId, accountName, description);
   }
 
 }

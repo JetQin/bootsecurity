@@ -20,11 +20,14 @@
 // date   : 2016年3月10日
 // 
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.github.jetqin.controller;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.github.jetqin.AbstractTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,26 +36,25 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.github.jetqin.AbstractTest;
-
 /**
  * @author jet
  *
  */
 public class SampleControllerTest extends AbstractTest
 {
+
   private MockMvc mvc;
 
   @Before
-  public void setUp ( ) throws Exception
+  public void setUp () throws Exception
   {
-    mvc = MockMvcBuilders.standaloneSetup(new SampleController()).build();
+    mvc = MockMvcBuilders.standaloneSetup (new SampleController ()).build ();
   }
 
   @Test
-  public void getHello ( ) throws Exception
+  public void getHello () throws Exception
   {
-    mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
-        .andExpect(content().string(equalTo("Hello World!")));
+    mvc.perform (MockMvcRequestBuilders.get ("/").accept (MediaType.APPLICATION_JSON_VALUE)).andExpect (
+        status ().isOk ()).andExpect (content ().string (equalTo ("Hello World!")));
   }
 }

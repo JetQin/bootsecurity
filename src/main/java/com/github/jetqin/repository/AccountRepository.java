@@ -40,11 +40,13 @@
 // date   : 2016年3月14日
 // 
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.github.jetqin.repository;
+
+import com.github.jetqin.domain.Account;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.github.jetqin.domain.Account;
 /**
  * @author jet
  *
@@ -52,5 +54,5 @@ import com.github.jetqin.domain.Account;
 
 public interface AccountRepository extends JpaRepository<Account, String>
 {
-//   Account findAccountByAccountId(String id);
+  // Account findAccountByAccountId(String id);
 }

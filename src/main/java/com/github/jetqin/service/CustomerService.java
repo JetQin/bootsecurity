@@ -6,6 +6,7 @@
  * Copyright (c) 2016, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
+
 package com.github.jetqin.service;
 
 import java.util.List;
@@ -38,12 +39,12 @@ public class CustomerService
 
   public void saveCustomer (Customer customer)
   {
-    customerRepository.save(customer);
+    customerRepository.save (customer);
   }
 
-  public List<Customer> findAll ( )
+  public List<Customer> findAll ()
   {
-    return customerRepository.findAll();
+    return customerRepository.findAll ();
   }
 
 }

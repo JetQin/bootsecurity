@@ -6,15 +6,16 @@
  * Copyright (c) 2016, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
+
 package com.github.jetqin.repository;
 
-import java.util.UUID;
+import com.github.jetqin.AbstractTest;
+import com.github.jetqin.domain.Permission;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.github.jetqin.AbstractTest;
-import com.github.jetqin.domain.Permission;
+import java.util.UUID;
 
 /**
  * ClassName: CustomerRepositoryTest
@@ -30,17 +31,16 @@ public class PermissionRepositoryTest extends AbstractTest
   PermissionRepository permissionRepository;
 
   @Test
-  public void save ( )
+  public void save ()
   {
-    permissionRepository.save(new Permission(UUID.randomUUID().toString(),"Read", "read permission"));
-    permissionRepository.save(new Permission(UUID.randomUUID().toString(),"Write",   "write permission"));
-    permissionRepository.save(new Permission(UUID.randomUUID().toString(),"Execute", "execute permission"));
-    
-    for (Permission permission : permissionRepository.findAll())
+    permissionRepository.save (new Permission (UUID.randomUUID ().toString (), "Read", "read permission"));
+    permissionRepository.save (new Permission (UUID.randomUUID ().toString (), "Write", "write permission"));
+    permissionRepository.save (new Permission (UUID.randomUUID ().toString (), "Execute", "execute permission"));
+
+    for (Permission permission : permissionRepository.findAll ())
     {
-      System.out.println(permission.toString());
+      System.out.println (permission.toString ());
     }
   }
-
 
 }

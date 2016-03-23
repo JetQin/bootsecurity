@@ -40,11 +40,13 @@
 // date   : 2016年3月14日
 // 
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.github.jetqin.repository;
+
+import com.github.jetqin.domain.Permission;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.github.jetqin.domain.Permission;
 /**
  * @author jet
  *

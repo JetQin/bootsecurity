@@ -6,15 +6,20 @@
  * Copyright (c) 2016, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
+
 package com.github.jetqin.repository;
 
-import java.util.UUID;
+import com.github.jetqin.AbstractTest;
+import com.github.jetqin.domain.Permission;
+import com.github.jetqin.domain.Role;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.github.jetqin.AbstractTest;
-import com.github.jetqin.domain.Role;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * ClassName: CustomerRepositoryTest
@@ -29,18 +34,38 @@ public class RoleRepositoryTest extends AbstractTest
   @Autowired
   RoleRepository roleRepository;
 
-  @Test
-  public void save ( )
+  final Role role = new Role ();
+
+  @Before
+  public void setup ()
   {
-    roleRepository.save(new Role(UUID.randomUUID().toString(),"Admin", "Admin"));
-    roleRepository.save(new Role(UUID.randomUUID().toString(),"User",   "User"));
-    roleRepository.save(new Role(UUID.randomUUID().toString(),"Travelor", "Travelor"));
-    
-    for (Role role : roleRepository.findAll())
-    {
-      System.out.println(role.toString());
-    }
+    role.setRoleId (String.valueOf (UUID.randomUUID ()));
+    role.setRoleName ("ROLE_ADMIN");
+    role.setDescription ("ROLE Admin");
+
+    final Set<Permission> permissions = new HashSet<Permission> ();
+    final Permission permission = new Permission (String.valueOf (UUID.randomUUID ()), "READ_ADMIN", "READ_ADMIN");
+    permissions.add (permission);
+    role.setPermissions (permissions);
   }
 
+  @Test
+  public void testSaveRolePermission ()
+  {
+    roleRepository.save (role);
+  }
+
+  @Test
+  public void save ()
+  {
+    roleRepository.save (new Role (UUID.randomUUID ().toString (), "Admin", "Admin"));
+    roleRepository.save (new Role (UUID.randomUUID ().toString (), "User", "User"));
+    roleRepository.save (new Role (UUID.randomUUID ().toString (), "Travelor", "Travelor"));
+
+    for (Role role : roleRepository.findAll ())
+    {
+      System.out.println (role.toString ());
+    }
+  }
 
 }

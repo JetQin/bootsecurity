@@ -20,9 +20,10 @@
 // date   : 2016年3月14日
 // 
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.github.jetqin.domain;
 
-import groovy.transform.ToString;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -33,56 +34,55 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.core.style.ToStringCreator;
-
-import lombok.Data;
-
 /**
  * @author jet
  *
  */
+@Data
 @Entity
-@Table(name = "PERMISSION")
-public @Data class Permission implements Serializable
+@Table (name = "PERMISSION")
+public  class Permission implements Serializable
 {
+
   /**
    * 
    */
   private static final long serialVersionUID = 3770484966056583532L;
 
   @Id
-  @Column(name = "PERMISSION_ID")
-  private String    permissionId;
+  @Column (name = "PERMISSION_ID")
+  private String permissionId;
 
-  @Column(name = "PERMISSION_NAME")
-  private String    permissionName;
+  @Column (name = "PERMISSION_NAME")
+  private String permissionName;
 
-  @Column(name = "DESCRIPTION")
-  private String    description;
+  @Column (name = "DESCRIPTION")
+  private String description;
 
-  @ManyToMany(mappedBy="permissions")
+  @ManyToMany (mappedBy = "permissions")
   private Set<Role> roles;
-  
-  public Permission(){}
-  
-  public Permission(String permissionId,String permissionName)
+
+  public Permission ()
+  {
+  }
+
+  public Permission (String permissionId, String permissionName)
   {
     this.permissionId = permissionId;
     this.permissionName = permissionName;
   }
-  
-  public Permission(String permissionId,String permissionName,String description)
+
+  public Permission (String permissionId, String permissionName, String description)
   {
     this.permissionId = permissionId;
     this.permissionName = permissionName;
     this.description = description;
   }
-  
+
   @Override
-  public String toString ( )
+  public String toString ()
   {
-    // TODO Auto-generated method stub
-    return String.format("Permission[id=%s,name=%s,description=%s]", permissionId,permissionName,description);
+    return String.format ("Permission[id=%s,name=%s,description=%s]", permissionId, permissionName, description);
   }
 
 }

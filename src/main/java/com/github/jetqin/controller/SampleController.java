@@ -20,6 +20,7 @@
 // date   : 2016年3月9日
 // 
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.github.jetqin.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,12 +35,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class SampleController
 {
 
-  @RequestMapping("/hello")
+  @RequestMapping ("/hello")
   @ResponseBody
-  public String home ( )
+  public String home ()
   {
     return "Hello World!";
   }
-
 
 }

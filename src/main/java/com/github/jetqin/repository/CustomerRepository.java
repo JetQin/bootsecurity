@@ -6,6 +6,7 @@
  * Copyright (c) 2016, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
+
 package com.github.jetqin.repository;
 
 import java.util.List;
@@ -15,16 +16,17 @@ import org.springframework.stereotype.Repository;
 
 import com.github.jetqin.domain.Customer;
 
-/** 
- * ClassName: CustomerRepository  
+/**
+ * ClassName: CustomerRepository
  * 
- * @author jet 
+ * @author jet
  * @version Configuration Framework 1.0
- * @since JDK 1.7 
+ * @since JDK 1.7
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long>
+{
 
-  List<Customer> findByLastName(String lastName);
-  
+  List<Customer> findByLastName (String lastName);
+
 }

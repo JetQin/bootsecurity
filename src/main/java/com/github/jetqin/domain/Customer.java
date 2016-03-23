@@ -6,6 +6,7 @@
  * Copyright (c) 2016, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
+
 package com.github.jetqin.domain;
 
 import javax.persistence.Column;
@@ -15,42 +16,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-/** 
- * ClassName: Customer  
+/**
+ * ClassName: Customer
  * 
- * @author jet 
+ * @author jet
  * @version Configuration Framework 1.0
- * @since JDK 1.7 
+ * @since JDK 1.7
  */
 
 @Entity
-@Table(name="Customer")
-public class Customer {
+@Table (name = "Customer")
+public class Customer
+{
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="ID")
-    private long id;
-    
-    @Column(name="FIRST_NAME")
-    private String firstName;
-    
-    @Column(name="LAST_NAME")
-    private String lastName;
+  @Id
+  @GeneratedValue (strategy = GenerationType.AUTO)
+  @Column (name = "ID")
+  private long id;
 
-    protected Customer() {}
+  @Column (name = "FIRST_NAME")
+  private String firstName;
 
-    public Customer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  @Column (name = "LAST_NAME")
+  private String lastName;
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
-    }
+  protected Customer ()
+  {
+  }
+
+  public Customer (String firstName, String lastName)
+  {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  @Override
+  public String toString ()
+  {
+    return String.format ("Customer[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
+  }
 
 }
