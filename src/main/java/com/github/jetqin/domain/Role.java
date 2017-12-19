@@ -49,11 +49,11 @@ public class Role implements Serializable
   @Column (name = "ROLE_NAME")
   private String roleName;
 
-  @Column (name = "DESCRIPTION")
+  @Column (name = "ROLE_DESCRIPTION")
   private String description;
 
   @ManyToMany (mappedBy = "roles")
-  private Set<Account> accounts;
+  private Set<User> accounts;
 
   @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable (

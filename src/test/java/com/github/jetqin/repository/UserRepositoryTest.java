@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.jetqin.AbstractTest;
-import com.github.jetqin.domain.Account;
+import com.github.jetqin.domain.User;
 import com.github.jetqin.domain.Role;
 
 /**
@@ -28,20 +28,20 @@ import com.github.jetqin.domain.Role;
  * @version Configuration Framework 1.0
  * @since JDK 1.7
  */
-public class AccountRepositoryTest extends AbstractTest
+public class UserRepositoryTest extends AbstractTest
 {
 
   @Autowired
   AccountRepository accountRepository;
 
-  final Account account = new Account ();
+  final User account = new User ();
 
   @Before
   public void setup ()
   {
-    account.setAccountId (UUID.randomUUID ().toString ());
-    account.setAccountName ("JetQin");
-    account.setAccountPassword ("123456");
+    account.setUserId (UUID.randomUUID ().toString ());
+    account.setUserName ("JetQin");
+    account.setPassword ("123456");
     account.setDescription ("Admin User");
 
     final Role role = new Role (String.valueOf (UUID.randomUUID ()), "ADMIN_ROLE", "Admin");
@@ -60,13 +60,13 @@ public class AccountRepositoryTest extends AbstractTest
   @Test
   public void save ()
   {
-    accountRepository.save (new Account (UUID.randomUUID ().toString (), "Jack", "Bauer"));
-    accountRepository.save (new Account (UUID.randomUUID ().toString (), "Chloe", "O'Brian"));
-    accountRepository.save (new Account (UUID.randomUUID ().toString (), "Kim", "Bauer"));
-    accountRepository.save (new Account (UUID.randomUUID ().toString (), "David", "Palmer"));
-    accountRepository.save (new Account (UUID.randomUUID ().toString (), "Michelle", "Dessler"));
+    accountRepository.save (new User (UUID.randomUUID ().toString (), "Jack", "Bauer"));
+    accountRepository.save (new User (UUID.randomUUID ().toString (), "Chloe", "O'Brian"));
+    accountRepository.save (new User (UUID.randomUUID ().toString (), "Kim", "Bauer"));
+    accountRepository.save (new User (UUID.randomUUID ().toString (), "David", "Palmer"));
+    accountRepository.save (new User (UUID.randomUUID ().toString (), "Michelle", "Dessler"));
 
-    for (Account account : accountRepository.findAll ())
+    for (User account : accountRepository.findAll ())
     {
       System.out.println (account.toString ());
     }

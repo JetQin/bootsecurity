@@ -56,7 +56,7 @@ public  class Permission implements Serializable
   @Column (name = "PERMISSION_NAME")
   private String permissionName;
 
-  @Column (name = "DESCRIPTION")
+  @Column (name = "PERMISSION_DESCRIPTION")
   private String description;
 
   @ManyToMany (mappedBy = "permissions")

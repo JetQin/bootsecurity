@@ -23,11 +23,8 @@
 
 package com.github.jetqin.startup;
 
-import com.github.jetqin.repository.CustomerRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -52,32 +49,10 @@ public class StartupApplication
 
   private Logger log = LoggerFactory.getLogger (StartupApplication.class);
 
-  @Autowired
-  private CustomerRepository repository;
 
   public static void main (String[] args)
   {
     SpringApplication.run (StartupApplication.class);
   }
 
-  // @Bean
-  // public CommandLineRunner demo() {
-  // return (args) -> {
-  // // save a couple of customers
-  // repository.save(new Customer("Jack", "Bauer"));
-  // repository.save(new Customer("Chloe", "O'Brian"));
-  // repository.save(new Customer("Kim", "Bauer"));
-  // repository.save(new Customer("David", "Palmer"));
-  // repository.save(new Customer("Michelle", "Dessler"));
-  //
-  // // fetch all customers
-  // log.info("Customers found with findAll():");
-  // log.info("-------------------------------");
-  // for (Customer customer : repository.findAll()) {
-  // log.info(customer.toString());
-  // }
-  // log.info("");
-  //
-  // };
-  // }
 }

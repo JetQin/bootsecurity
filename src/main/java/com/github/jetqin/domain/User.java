@@ -44,8 +44,8 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@Table (name = "ACCOUNT")
-public class Account implements Serializable
+@Table (name = "USER")
+public class User implements Serializable
 {
 
   /**
@@ -54,45 +54,57 @@ public class Account implements Serializable
   private static final long serialVersionUID = 3366461526182564088L;
 
   @Id
-  @Column (name = "ACCOUNT_ID")
-  private String accountId;
+  @Column (name = "USER_ID")
+  private String userId;
 
-  @Column (name = "ACCOUNT_NAME")
-  private String accountName;
+  @Column (name = "USER_NAME")
+  private String userName;
 
-  @Column (name = "ACCOUNT_PASSWORD")
-  private String accountPassword;
+  @Column (name = "PASSWORD")
+  private String password;
+
+  @Column (name = "ACTIVATED")
+  private boolean activated;
+  
+  @Column (name = "ACTIVATIONKEY")
+  private String activationKey;
+  
+  @Column (name = "EMAIL")
+  private String email;
+  
+  @Column (name = "TELEPHONE")
+  private String telephone;
 
   @Column (name = "DESCRIPTION")
   private String description;
 
   @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable (
-      name = "ACCOUNT_ROLE", joinColumns = { @JoinColumn (name = "ACCOUNT_ID") }, inverseJoinColumns = { @JoinColumn (
+      name = "USER_ROLE", joinColumns = { @JoinColumn (name = "USER_ID") }, inverseJoinColumns = { @JoinColumn (
           name = "ROLE_ID") })
   private Set<Role> roles;
 
-  public Account ()
+  public User ()
   {
   }
 
-  public Account (String id, String name)
+  public User (String id, String name)
   {
-    this.accountId = id;
-    this.accountName = name;
+    this.userId = id;
+    this.userName = name;
   }
 
-  public Account (String id, String name, String description)
+  public User (String id, String name, String description)
   {
-    this.accountId = id;
-    this.accountName = name;
+    this.userId = id;
+    this.userName = name;
     this.description = description;
   }
 
   @Override
   public String toString ()
   {
-    return String.format ("Account[id=%s, name='%s', description='%s']", accountId, accountName, description);
+    return String.format ("Account[id=%s, name='%s', description='%s']", userId, userName, description);
   }
 
 }

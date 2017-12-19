@@ -43,7 +43,7 @@
 
 package com.github.jetqin.repository;
 
-import com.github.jetqin.domain.Account;
+import com.github.jetqin.domain.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -52,7 +52,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  */
 
-public interface AccountRepository extends JpaRepository<Account, String>
+public interface AccountRepository extends JpaRepository<User, String>
 {
-  // Account findAccountByAccountId(String id);
 }

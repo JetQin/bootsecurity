@@ -47,13 +47,13 @@ import javax.sql.DataSource;
 public class DatabaseConfig
 {
 
-  private static final String PROPERTY_NAME_DATABASE_DRIVER = "spring.datasource.driverClassName";
+  private static final String PROPERTY_NAME_DATABASE_DRIVER = "spring.datasource.driver-class-name";
   private static final String PROPERTY_NAME_DATABASE_PASSWORD = "spring.datasource.password";
   private static final String PROPERTY_NAME_DATABASE_URL = "spring.datasource.url";
   private static final String PROPERTY_NAME_DATABASE_USERNAME = "spring.datasource.username";
-  private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
-  private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-  private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
+//  private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "spring.jpa.properties.hibernate.dialect";
+//  private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+//  private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
   private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
 
   @Resource
@@ -87,24 +87,15 @@ public class DatabaseConfig
         new LocalContainerEntityManagerFactoryBean ();
 
     final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter ();
-    vendorAdapter.setGenerateDdl (Boolean.TRUE);
+//    vendorAdapter.setGenerateDdl (Boolean.TRUE);
     vendorAdapter.setShowSql (Boolean.TRUE);
     entityManagerFactoryBean.setDataSource (dataSource ());
     entityManagerFactoryBean.setJpaVendorAdapter (vendorAdapter);
     entityManagerFactoryBean.setPackagesToScan (env.getRequiredProperty (PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
-    entityManagerFactoryBean.setJpaProperties (hibProperties ());
     entityManagerFactoryBean.afterPropertiesSet ();
     entityManagerFactoryBean.setLoadTimeWeaver (new InstrumentationLoadTimeWeaver ());
     return entityManagerFactoryBean;
   }
 
-  private Properties hibProperties ()
-  {
-    final Properties properties = new Properties ();
-    properties.put (PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty (PROPERTY_NAME_HIBERNATE_DIALECT));
-    properties.put (PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty (PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-    properties.put (PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, env.getProperty (PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
-    return properties;
-  }
 
 }
