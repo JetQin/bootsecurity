@@ -44,67 +44,110 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@Table (name = "USER")
-public class User implements Serializable
-{
+@Table(name = "USER")
+public class User implements Serializable {
 
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 3366461526182564088L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3366461526182564088L;
 
-  @Id
-  @Column (name = "USER_ID")
-  private String userId;
+	@Id
+	@Column(name = "USER_ID")
+	private String userId;
 
-  @Column (name = "USER_NAME")
-  private String userName;
+	@Column(name = "USER_NAME")
+	private String username;
 
-  @Column (name = "PASSWORD")
-  private String password;
+	@Column(name = "PASSWORD")
+	private String password;
 
-  @Column (name = "ACTIVATED")
-  private boolean activated;
-  
-  @Column (name = "ACTIVATIONKEY")
-  private String activationKey;
-  
-  @Column (name = "EMAIL")
-  private String email;
-  
-  @Column (name = "TELEPHONE")
-  private String telephone;
+	@Column(name = "ACTIVATED")
+	private boolean activated;
 
-  @Column (name = "DESCRIPTION")
-  private String description;
+	@Column(name = "ACTIVATIONKEY")
+	private String activationKey;
 
-  @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinTable (
-      name = "USER_ROLE", joinColumns = { @JoinColumn (name = "USER_ID") }, inverseJoinColumns = { @JoinColumn (
-          name = "ROLE_ID") })
-  private Set<Role> roles;
+	@Column(name = "EMAIL")
+	private String email;
 
-  public User ()
-  {
-  }
+	@Column(name = "TELEPHONE")
+	private String telephone;
 
-  public User (String id, String name)
-  {
-    this.userId = id;
-    this.userName = name;
-  }
+	@Column(name = "DESCRIPTION")
+	private String description;
 
-  public User (String id, String name, String description)
-  {
-    this.userId = id;
-    this.userName = name;
-    this.description = description;
-  }
+	@Column(name = "ACCOUNT_EXPIRED")
+	private boolean accountNonExpired;
+	
+	@Column(name = "ACCOUNT_LOCKED")
+	private boolean accountNonLocked;
+	
+	@Column(name = "CREDENTIAL_EXPIRED")
+	private boolean credentialsNonExpired;
+	
+	@Column(name = "ENABLED")
+	private boolean enabled;
 
-  @Override
-  public String toString ()
-  {
-    return String.format ("Account[id=%s, name='%s', description='%s']", userId, userName, description);
-  }
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_ROLE",
+		    joinColumns = { @JoinColumn(name = "USER_ID") },
+			inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
+	private Set<Role> roles;
+
+	public User() {
+	}
+	
+	public User(String id, String name) {
+		this.userId = id;
+		this.username = name;
+	}
+
+	public User(String id, String name, String description) {
+		this.userId = id;
+		this.username = name;
+		this.description = description;
+	}
+	
+	public User(User user) {
+		this.userId = user.getUserId();
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+		this.activated = user.isActivated();
+		this.activationKey = user.getActivationKey();
+		this.email = user.getEmail();
+		this.telephone = user.getTelephone();
+		this.description = user.getDescription();
+		this.accountNonExpired = user.isAccountNonExpired();
+		this.accountNonLocked = user.isAccountNonLocked();
+		this.credentialsNonExpired = user.isCredentialsNonExpired();
+		this.enabled = user.isEnabled();
+		this.roles = user.getRoles();
+	}
+
+	
+	@Override
+	public String toString() {
+		return String.format("Account[id=%s, name='%s', description='%s']", userId, username, description);
+	}
+
+	public User(String userId, String username, String password, boolean activated, String activationKey, String email,
+			String telephone, String description, boolean accountNonExpired, boolean accountNonLocked,
+			boolean credentialsNonExpired, boolean enabled, Set<Role> roles) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.activated = activated;
+		this.activationKey = activationKey;
+		this.email = email;
+		this.telephone = telephone;
+		this.description = description;
+		this.accountNonExpired = accountNonExpired;
+		this.accountNonLocked = accountNonLocked;
+		this.credentialsNonExpired = credentialsNonExpired;
+		this.enabled = enabled;
+		this.roles = roles;
+	}
 
 }

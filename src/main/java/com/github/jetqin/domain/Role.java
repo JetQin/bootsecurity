@@ -52,15 +52,6 @@ public class Role implements Serializable
   @Column (name = "ROLE_DESCRIPTION")
   private String description;
 
-  @ManyToMany (mappedBy = "roles")
-  private Set<User> accounts;
-
-  @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinTable (
-      name = "PERMISSION_ROLE", joinColumns = { @JoinColumn (name = "ROLE_ID") }, inverseJoinColumns = { @JoinColumn (
-          name = "PERMISSION_ID") })
-  private Set<Permission> permissions;
-
   public Role ()
   {
   }

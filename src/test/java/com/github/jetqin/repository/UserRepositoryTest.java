@@ -16,6 +16,7 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.github.jetqin.AbstractTest;
 import com.github.jetqin.domain.User;
@@ -32,7 +33,7 @@ public class UserRepositoryTest extends AbstractTest
 {
 
   @Autowired
-  AccountRepository accountRepository;
+  UserRepository accountRepository;
 
   final User account = new User ();
 
@@ -40,11 +41,15 @@ public class UserRepositoryTest extends AbstractTest
   public void setup ()
   {
     account.setUserId (UUID.randomUUID ().toString ());
-    account.setUserName ("JetQin");
-    account.setPassword ("123456");
+    account.setUsername("jet");
+    account.setAccountNonExpired(true);
+    account.setAccountNonLocked(true);
+    account.setEnabled(true);
+    account.setCredentialsNonExpired(true);
+    account.setPassword (new BCryptPasswordEncoder().encode("123456"));
     account.setDescription ("Admin User");
 
-    final Role role = new Role (String.valueOf (UUID.randomUUID ()), "ADMIN_ROLE", "Admin");
+    final Role role = new Role (String.valueOf (UUID.randomUUID ()), "ADMIN", "Admin");
     final Set<Role> roles = new HashSet<Role> ();
     roles.add (role);
     account.setRoles (roles);

@@ -33,7 +33,6 @@ import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -87,7 +86,7 @@ public class DatabaseConfig
         new LocalContainerEntityManagerFactoryBean ();
 
     final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter ();
-//    vendorAdapter.setGenerateDdl (Boolean.TRUE);
+    vendorAdapter.setGenerateDdl (Boolean.TRUE);
     vendorAdapter.setShowSql (Boolean.TRUE);
     entityManagerFactoryBean.setDataSource (dataSource ());
     entityManagerFactoryBean.setJpaVendorAdapter (vendorAdapter);

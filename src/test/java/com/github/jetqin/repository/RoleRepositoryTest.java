@@ -9,17 +9,14 @@
 
 package com.github.jetqin.repository;
 
-import com.github.jetqin.AbstractTest;
-import com.github.jetqin.domain.Permission;
-import com.github.jetqin.domain.Role;
+import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import com.github.jetqin.AbstractTest;
+import com.github.jetqin.domain.Role;
 
 /**
  * ClassName: CustomerRepositoryTest
@@ -43,10 +40,6 @@ public class RoleRepositoryTest extends AbstractTest
     role.setRoleName ("ROLE_ADMIN");
     role.setDescription ("ROLE Admin");
 
-    final Set<Permission> permissions = new HashSet<Permission> ();
-    final Permission permission = new Permission (String.valueOf (UUID.randomUUID ()), "READ_ADMIN", "READ_ADMIN");
-    permissions.add (permission);
-    role.setPermissions (permissions);
   }
 
   @Test
