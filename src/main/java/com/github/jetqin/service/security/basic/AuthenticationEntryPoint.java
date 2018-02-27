@@ -1,4 +1,4 @@
-package com.github.jetqin.service.security;
+package com.github.jetqin.service.security.basic;
 
 import java.io.IOException;
 import java.io.PrintWriter;

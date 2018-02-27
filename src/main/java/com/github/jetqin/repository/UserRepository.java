@@ -45,10 +45,7 @@ package com.github.jetqin.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.github.jetqin.domain.User;
 
@@ -61,7 +58,7 @@ import com.github.jetqin.domain.User;
 public interface UserRepository extends JpaRepository<User, String>
 {
 //	@Query("from User as u inner join fetch u.roles where u.userId = ?1")
-//	public User findUserByUserId(String userId);
+	public User findUserByUserId(String userId);
 	
 //	@Query("select u from User as u left join fetch u.roles where u.username = ?1")
 	public User findUserByUsername(String username);

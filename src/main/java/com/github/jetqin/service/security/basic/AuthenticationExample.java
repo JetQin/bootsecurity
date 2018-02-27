@@ -1,4 +1,4 @@
-package com.github.jetqin.service.security;
+package com.github.jetqin.service.security.basic;
 //////////////////////////////////////////////////////////////////////////////////
 //// 
 //// Copyright (C) 2001-2016 the original author or authors.

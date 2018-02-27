@@ -21,7 +21,7 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.github.jetqin.config;
+package com.github.jetqin.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,8 +36,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.github.jetqin.service.security.AuthenticationEntryPoint;
-
 /**
  * @author jet
  *
@@ -45,36 +43,29 @@ import com.github.jetqin.service.security.AuthenticationEntryPoint;
 
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-public class HttpBasicSecurityConfig extends WebSecurityConfigurerAdapter {
+public class FormLoginSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	@Qualifier("customUserDetailService")
 	private UserDetailsService userDetailService;
-	
-	@Autowired
-	private AuthenticationEntryPoint authEntryPoint;
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().antMatchers("/*").permitAll();
-		// .antMatchers("/app/*.css").permitAll()
-		// .antMatchers("/app/*.js").permitAll()
-		// .antMatchers("/app/*").permitAll()
-		// .antMatchers("/hello").permitAll()
-		// .anyRequest().authenticated()
-		// .and()
-		// .formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
-		// .and().logout().permitAll();
-		http.csrf().disable().authorizeRequests()
-				.anyRequest().authenticated()
-				.and().httpBasic()
-				.authenticationEntryPoint(authEntryPoint);
+		http.authorizeRequests()
+		 .antMatchers("/*").permitAll()
+		 .antMatchers("/app/*.css").permitAll()
+		 .antMatchers("/app/*.js").permitAll()
+		 .antMatchers("/app/*").permitAll()
+		 .antMatchers("/hello").permitAll()
+		 .anyRequest().authenticated()
+		 .and()
+		 .formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
+		 .and().logout().permitAll();
 	}
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		 auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "USER")
-//		 .and().withUser("user").password("user").roles("USER");
 		auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
 	}
 
