@@ -77,7 +77,6 @@ public class Role implements Serializable
   @Override
   public String toString ()
   {
-    // TODO Auto-generated method stub
     return String.format ("Role[id=%s,name=%s,description=%s]", roleId, roleName, description);
   }
 }
