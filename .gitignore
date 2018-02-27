@@ -3,4 +3,7 @@
 *.classpath
 *.DS_Store
 /target
+.checkstyle
+*.idea
+*.DS_Store
 

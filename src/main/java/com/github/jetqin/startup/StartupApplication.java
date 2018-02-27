@@ -54,7 +54,6 @@ public class StartupApplication
   public static void main (String[] args)
   {
 	log.info("Initialize application");
-//    SpringApplication.run (StartupApplication.class);
     SpringApplication app = new SpringApplication(StartupApplication.class); 
     app.setBannerMode(Banner.Mode.OFF);
     app.run(args);
