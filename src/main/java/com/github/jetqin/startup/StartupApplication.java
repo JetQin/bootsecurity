@@ -27,8 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -40,8 +40,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 
 @Configuration
+@ComponentScan
 @ComponentScan ("com.github.jetqin.*")
-@EntityScan ("com.github.jetqin.domain")
+@EntityScan("com.github.jetqin.domain.*")
 @EnableTransactionManagement
 @EnableJpaRepositories ("com.github.jetqin.repository")
 @EnableAutoConfiguration

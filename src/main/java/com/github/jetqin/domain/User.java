@@ -97,16 +97,16 @@ public class User implements Serializable {
 
 	public User() {
 	}
-	
-	public User(String id, String name) {
-		this.userId = id;
+
+	public User(String name, String password) {
 		this.username = name;
+		this.password = password;
 	}
 
-	public User(String id, String name, String description) {
+	public User(String id,String name, String password) {
 		this.userId = id;
 		this.username = name;
-		this.description = description;
+		this.password = password;
 	}
 	
 	public User(User user) {

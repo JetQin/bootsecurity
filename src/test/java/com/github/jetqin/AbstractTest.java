@@ -12,7 +12,7 @@ package com.github.jetqin;
 import com.github.jetqin.startup.StartupApplication;
 
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -22,11 +22,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * 
  * @author jet
  * @version Configuration Framework 1.0
- * @since JDK 1.7
+ * @since JDK 1.8
  */
 
 @RunWith (SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration (classes = { MockServletContext.class, StartupApplication.class })
+@SpringBootTest(classes = { MockServletContext.class, StartupApplication.class })
 @WebAppConfiguration
 public class AbstractTest
 {
