@@ -21,9 +21,9 @@ public class LoginController {
 	@Autowired
 	UserRepository userRepository;
 
-	@Autowired
-    @Qualifier("passwordEncoder")
-    PasswordEncoder passwordEncoder;
+//	@Autowired
+//    @Qualifier("passwordEncoder")
+//    PasswordEncoder passwordEncoder;
 
 	@RequestMapping("/login/account")
 	@ResponseBody
@@ -36,13 +36,13 @@ public class LoginController {
 		return new ResponseEntity<String>(Constants.OK,headers,HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/signup",method = {RequestMethod.GET, RequestMethod.POST})
-	public ResponseEntity<String> signup(@RequestBody(required = true) User user)
-	{
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userRepository.save(user);
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-		return new ResponseEntity<String>(Constants.OK,headers,HttpStatus.OK);
-	}
+//	@RequestMapping(value = "/signup",method = {RequestMethod.GET, RequestMethod.POST})
+//	public ResponseEntity<String> signup(@RequestBody(required = true) User user)
+//	{
+//		user.setPassword(passwordEncoder.encode(user.getPassword()));
+//		userRepository.save(user);
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+//		return new ResponseEntity<String>(Constants.OK,headers,HttpStatus.OK);
+//	}
 }

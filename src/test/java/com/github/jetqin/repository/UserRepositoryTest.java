@@ -41,7 +41,8 @@ public class UserRepositoryTest extends AbstractTest
   public void setup ()
   {
     account.setUserId (UUID.randomUUID ().toString ());
-    account.setUsername("jet");
+    account.setUsername("bruce");
+    account.setEmail("qinjet@gmail.com");
     account.setAccountNonExpired(true);
     account.setAccountNonLocked(true);
     account.setEnabled(true);

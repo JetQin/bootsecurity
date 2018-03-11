@@ -1,4 +1,4 @@
-package com.github.jetqin.config.security;
+package com.github.jetqin.service.security.jwt;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;

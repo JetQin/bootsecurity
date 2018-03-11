@@ -1,4 +1,4 @@
-package com.github.jetqin.config.security;
+package com.github.jetqin.service.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jetqin.domain.User;
