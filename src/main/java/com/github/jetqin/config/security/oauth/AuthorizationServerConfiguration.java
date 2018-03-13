@@ -1,6 +1,7 @@
 package com.github.jetqin.config.security.oauth;
 
 import com.github.jetqin.config.security.OAuth2ServerConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -17,15 +18,21 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends
         AuthorizationServerConfigurerAdapter
 {
+    @Autowired
+    HikariDataSource dataSource;
 
     @Autowired
     @Qualifier("authenticationManagerBean")
@@ -56,24 +63,26 @@ public class AuthorizationServerConfiguration extends
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // @formatter:off
-        clients
-                .inMemory()
-                .withClient("clientapp")
-                .secret("123456")
-                .authorizedGrantTypes("password", "refresh_token")
-                .authorities("USER","ADMIN")
-                .resourceIds(Constants.RESOURCE_ID)
-                .scopes("read", "write")
-                .accessTokenValiditySeconds(20000)
-                .refreshTokenValiditySeconds(20000)
-                .autoApprove(true)
-        ;
+//        clients
+//                .inMemory()
+//                .withClient("clientapp")
+//                .secret("123456")
+//                .authorizedGrantTypes("password", "refresh_token")
+//                .authorities("USER","ADMIN")
+//                .resourceIds(Constants.RESOURCE_ID)
+//                .scopes("read", "write")
+//                .accessTokenValiditySeconds(20000)
+//                .refreshTokenValiditySeconds(20000)
+//        ;
+
+        clients.jdbc(dataSource);
         // @formatter:on
     }
 
     @Bean
-    public JwtTokenStore tokenStore() {
-        return new JwtTokenStore(accessTokenConverter());
+    public TokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
+//        return new JwtTokenStore(accessTokenConverter());
     }
 
     /**

@@ -33,8 +33,8 @@ public class ResourceServerConfiguration extends
         // @formatter:off
 //                config.tokenServices(tokenServices())
         config.resourceId(Constants.RESOURCE_ID)
-                .tokenServices(tokenServices)
-                .tokenStore(tokenStore);;
+//                .tokenServices(tokenServices)
+//                .tokenStore(tokenStore)
         ;
         // @formatter:on
     }
@@ -46,7 +46,7 @@ public class ResourceServerConfiguration extends
                 .authorizeRequests()
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/hello").access("#oauth2.hasScope('read')")
-                .antMatchers("/greeting").hasRole("ADMIN")
+                .antMatchers("/greeting").access("#oauth2.hasScope('read')")
                 .antMatchers("/api/**").authenticated()
         ;
 
