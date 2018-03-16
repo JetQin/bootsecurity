@@ -7,7 +7,7 @@
  * 
  */
 
-package com.github.jetqin.domain;
+package com.github.jetqin.domain.jpa;
 
 import java.io.Serializable;
 

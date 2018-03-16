@@ -11,12 +11,13 @@ package com.github.jetqin.repository;
 
 import java.util.UUID;
 
+import com.github.jetqin.repository.jpa.RoleRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.jetqin.AbstractTest;
-import com.github.jetqin.domain.Role;
+import com.github.jetqin.domain.jpa.Role;
 
 /**
  * ClassName: CustomerRepositoryTest

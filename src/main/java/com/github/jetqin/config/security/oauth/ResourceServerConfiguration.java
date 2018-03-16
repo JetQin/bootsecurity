@@ -44,9 +44,10 @@ public class ResourceServerConfiguration extends
         // @formatter:off
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/").permitAll()
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/hello").access("#oauth2.hasScope('read')")
-                .antMatchers("/greeting").access("#oauth2.hasScope('read')")
+                .antMatchers("/greeting").access("#oauth2.hasScope('revoke')")
                 .antMatchers("/api/**").authenticated()
         ;
 

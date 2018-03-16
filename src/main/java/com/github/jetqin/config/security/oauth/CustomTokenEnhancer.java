@@ -1,6 +1,6 @@
 package com.github.jetqin.config.security.oauth;
 
-import com.github.jetqin.domain.User;
+import com.github.jetqin.domain.jpa.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;

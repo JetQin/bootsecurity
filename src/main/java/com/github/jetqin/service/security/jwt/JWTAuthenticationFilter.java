@@ -1,7 +1,6 @@
 package com.github.jetqin.service.security.jwt;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.jetqin.domain.User;
+import com.github.jetqin.domain.jpa.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.http.HttpStatus;

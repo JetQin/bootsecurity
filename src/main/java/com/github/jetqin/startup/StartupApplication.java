@@ -27,15 +27,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import static org.springframework.context.annotation.ComponentScan.Filter;
 /**
  * @author jet
  *
@@ -43,11 +45,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 
 @Configuration
-@EnableWebMvc
-@ComponentScan("com.github.jetqin")
 @EntityScan("com.github.jetqin.domain.*")
 @EnableTransactionManagement
-@EnableJpaRepositories ("com.github.jetqin.repository")
+@EnableJpaRepositories ("com.github.jetqin.repository.jpa")
+@EnableMongoRepositories("com.github.jetqin.repository.mongodb")
 @EnableAutoConfiguration
 public class StartupApplication
 {

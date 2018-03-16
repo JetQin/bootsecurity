@@ -19,6 +19,9 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -75,31 +78,46 @@ public class OauthControllerTest
 
     @Test
     public void givenNoToken_whenGetSecureRequest_thenUnauthorized() throws Exception {
-        mockMvc.perform(get("/greeting")
+        mockMvc.perform(get("/hello")
                 .param("name", "Jet"))
                 .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    public void givenInvalidRole_whenGetSecureRequest_thenForbidden() throws Exception {
-        String accessToken = obtainAccessToken("jet", "12345678");
-        mockMvc.perform(get("/greeting")
-                .header("Authorization", "Bearer " + accessToken)
-                .param("name", "jim@yahoo.com"))
-                .andExpect(status().isForbidden());
     }
 
     @Test
     public void givenToken_whenPostGetSecureRequest_thenOk() throws Exception {
         String accessToken = obtainAccessToken("jet", "123456");
 
-        mockMvc.perform(get("/greeting")
-                .param("name", "jim@yahoo.com")
+        mockMvc.perform(get("/hello")
                 .header("Authorization", "Bearer " + accessToken)
                 .accept("application/json;charset=UTF-8"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
+        ;
+    }
+
+    @Test
+    public void givenNoToken_whenPostGetSecureRequest_withNoScope() throws Exception {
+        String accessToken = obtainAccessToken("jet", "123456");
+
+        mockMvc.perform(get("/greeting")
+                .param("name", "jim@yahoo.com")
+                .header("Authorization", "Bearer " + accessToken)
+                .accept("application/json;charset=UTF-8"))
+                .andExpect(status().isForbidden())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
                 ;
+    }
+
+    @Test
+    public void testLamda(){
+
+        //New way:
+        List<Integer> list = Arrays.asList(1,2,3,4,5,6,7);
+        int sum = list.stream().reduce((x,y) -> {
+            System.out.println(String.format("x=%d,y=%d",x,y));
+            return (x + y);
+        }).get();
+        System.out.println(sum);
     }
 
 }

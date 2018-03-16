@@ -13,14 +13,19 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.github.jetqin.repository.jpa.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.github.jetqin.AbstractTest;
-import com.github.jetqin.domain.User;
-import com.github.jetqin.domain.Role;
+import com.github.jetqin.domain.jpa.User;
+import com.github.jetqin.domain.jpa.Role;
+
+import javax.security.auth.login.AccountException;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * ClassName: CustomerRepositoryTest
@@ -55,6 +60,15 @@ public class UserRepositoryTest extends AbstractTest
     roles.add (role);
     account.setRoles (roles);
 
+  }
+
+
+  @Test
+  public void testFindAccount ()
+  {
+
+      User account = accountRepository.findUserByUsername("bruce");
+      assertNotNull(account);
   }
 
   @Test

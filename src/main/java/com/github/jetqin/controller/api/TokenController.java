@@ -4,6 +4,7 @@ import org.apache.catalina.LifecycleState;
 import org.hibernate.type.ListType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -28,6 +29,7 @@ public class TokenController
 
 
     @ResponseBody
+    @PreAuthorize("#oauth2.hasScope('read')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     public List<String> getTokens(){
         List<String> tokenValues = new ArrayList<>();
@@ -41,6 +43,7 @@ public class TokenController
     }
 
     @ResponseBody
+    @PreAuthorize("#oauth2.hasScope('read')")
     @RequestMapping(method = RequestMethod.POST, value = "/revoke/{tokenId:.*}")
     public String revokeToken(@PathVariable String tokenId){
         tokenServices.revokeToken(tokenId);
@@ -48,6 +51,7 @@ public class TokenController
     }
 
     @ResponseBody
+    @PreAuthorize("#oauth2.hasScope('read')")
     @RequestMapping(method = RequestMethod.POST, value = "/revokeRefreshToken/{tokenId:.*}")
     public String revokeRefreshToken(@PathVariable String tokenId){
         if (tokenStore instanceof JdbcTokenStore){

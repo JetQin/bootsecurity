@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.github.jetqin.domain.User;
+import com.github.jetqin.domain.jpa.User;
 
 
 @Component

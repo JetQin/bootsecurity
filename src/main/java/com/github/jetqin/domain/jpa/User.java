@@ -21,7 +21,7 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.github.jetqin.domain;
+package com.github.jetqin.domain.jpa;
 
 import lombok.Data;
 

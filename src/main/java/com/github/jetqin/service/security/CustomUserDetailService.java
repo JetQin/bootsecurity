@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.github.jetqin.domain.Role;
-import com.github.jetqin.domain.User;
-import com.github.jetqin.repository.UserRepository;
+import com.github.jetqin.domain.jpa.Role;
+import com.github.jetqin.domain.jpa.User;
+import com.github.jetqin.repository.jpa.UserRepository;
 
 @Service("customUserDetailService")
 public class CustomUserDetailService implements UserDetailsService{

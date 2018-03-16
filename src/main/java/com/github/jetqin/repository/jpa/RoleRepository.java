@@ -41,28 +41,18 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.github.jetqin.repository;
+package com.github.jetqin.repository.jpa;
 
+import com.github.jetqin.domain.jpa.Role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import com.github.jetqin.domain.User;
 
 /**
  * @author jet
  *
  */
 
-@Repository
-public interface UserRepository extends JpaRepository<User, String>
+public interface RoleRepository extends JpaRepository<Role, String>
 {
-//	@Query("from User as u inner join fetch u.roles where u.userId = ?1")
-	public User findUserByUserId(String userId);
-	
-//	@Query("select u from User as u left join fetch u.roles where u.username = ?1")
-	public User findUserByUsername(String username);
-	
-//	@Query("select a.roleName from Role a where a.roleId in (select roleId from UserRole b where b.username = ?1)")
-//	public List<String> findRoleByUserId(String username);
+  // Account findAccountByAccountId(String id);
 }
